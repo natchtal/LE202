@@ -292,7 +292,7 @@ void setup(void){
 	
 }
 
-***คำอธิบายคือ เป็นการเซ็ท web browser ขึ้นมา แล้วเมื่อได้ IP Address มา เมื่อเราก็อปแล้วไปวางใน browser ก็จะปรากฎคำว่า Hello cnt ที่เรากำนหดไว้ ***
+***คำอธิบายคือ เป็นการเซ็ท web browser ขึ้นมา แล้วเมื่อได้ IP Address มา เมื่อเราก็อปแล้วไปวางใน browser ก็จะปรากฎคำว่า Hello cnt ที่เรากำหนด***
 
 void loop(void){
 
@@ -320,7 +320,7 @@ IPAddress subnet(255, 255, 255, 0);
 
 ESP8266WebServer server(80);
 
-***คำอธิบาย คือ เป็นการกำหนดชื่อไวไฟ,พาสเวิร์ด,local_ip,gateway,subnet และเปิดเซิร์ฟเวอร์ที่port 80***
+***คำอธิบาย คือ เป็นการกำหนดชื่อไวไฟ,พาสเวิร์ด,local_ip,gateway,subnet และเปิดเซิร์ฟเวอร์ที่ port 80***
 
 int cnt = 0;
 
