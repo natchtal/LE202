@@ -56,7 +56,7 @@ void setup()
   
 }
 
-***คำอธิบายส่วน setup คือ กำหนดให้ตัวไวไฟพร้อมทำงานโดยมีความหน่วงเวลาเท่ากับ 100 ms ***
+***คำอธิบายส่วน setup คือ กำหนดให้ตัวไวไฟพร้อมทำงานโดยมีความหน่วงเวลาเท่ากับ 100 ms***
 
 void loop()
 
@@ -109,7 +109,7 @@ include <ESP8266WiFi.h>
 
 int cnt = 0;
 
-***คำอธิบาย คือ กำหนดให้ตัวแปร cnt มีค่าเริ่มต้นที่ 0 ***
+***คำอธิบาย คือ กำหนดให้ตัวแปร cnt มีค่าเริ่มต้นที่ 0***
 
 void setup()
 
@@ -121,7 +121,7 @@ void setup()
   
 	Serial.println("\n\n\n");
   
-  ***คำอธิบายส่วน setup คือ กำหนดให้port 0 เป็น output และserial port มีความเร็ว 115200 ms ***
+  ***คำอธิบายส่วน setup คือ กำหนดให้port 0 เป็น output และserial port มีความเร็ว 115200 ms***
   
 }
 
@@ -150,7 +150,7 @@ void loop()
 
 ***คำอธิบายส่วน void loop คือ มีการวนลูปโปรแกรมทุก 500 ms และกำหนดตัวแปร cnt หาร 2 ลงตัว นั้นหมายความว่า เมื่อตัวแปรเป็นเลขคู่ ตัวโปรแกรมจะแสดงค่าว่า HIGH ทำให้ไฟติด ส่วนเมื่อ cnt เป็นเลขคี่ โปรแกรมก็จะอ่านค่าได้ว่า LOW ทำให้ไฟนั้นดับ***
 
-# การทดลองที่ 4 เรื่อง การเขียนโปรแกรมเชื่อต่อไวไฟและเว็บเซอร์เวอร์
+## ส่วนของreley
 
 include <Arduino.h>
 
@@ -158,7 +158,7 @@ include <ESP8266WiFi.h>
 
 int cnt = 0;
 
-**คำอธิบาย คือ กำหนดให้ตัวแปร cnt มีค่าเริ่มต้นที่ 0 ***
+***คำอธิบาย คือ กำหนดให้ตัวแปร cnt มีค่าเริ่มต้นที่ 0***
 
 void setup()
 
@@ -174,7 +174,7 @@ void setup()
   
 }
 
- ***คำอธิบายส่วน setup คือ กำหนดให้port 0 เป็น input,port 2 ให้เป็น output และserial port มีความเร็ว 115200 ms ***
+ ***คำอธิบายส่วน setup คือ กำหนดให้port 0 เป็น input,port 2 ให้เป็น output และserial port มีความเร็ว 115200 ms***
   
 void loop()
 
@@ -199,62 +199,171 @@ void loop()
 
 ***คำอธิบายส่วน void loop คือ เริ่มต้นให้digital read อ่านค่าที่ port 0 ถ้าค่าที่อ่านได้เท่ากับ 1 โปรแกรมจะแสดงผลลัพธ์ที่ port 2 เท่ากับ LOW ทำให้ไฟดับ* แล้วถ้าหากค่าที่อ่านได้เท่ากับ 0 โปรแกรมจะแสดงผลลัพธ์ที่ port 2 เท่ากับ HiGH ทำให้ไฟเปิด โดยโปรแกรมจะวนลูปทุกๆ 100 ms***
 
+# การทดลองที่ 4 เรื่อง การเขียนโปรแกรมเชื่อต่อไวไฟและเว็บเซอร์เวอร์
+include <ESP8266WiFi.h>
 
-# การทดลองที่ 5 เรื่อง การเขียนโปรแกรมสร้างไวไฟแอคเซสพ้อยท์
-## สร้างไวไฟผ่านเว็ฐเซิร์ฟเวอร์
-#include <ESP8266WiFi.h>
-//#include <WiFiClient.h>
+include <WiFiClient.h>
+
 #include <ESP8266WebServer.h>
 
 const char* ssid = "HI_BMFWIFI_2.4G";
+
 const char* password = "0819110933";
 
 ESP8266WebServer server(80);
 
+***คำอธิบาย คือ เป็นการกำหนดชื่อไวไฟและพาสเวิร์ด***
+
 int cnt = 0;
 
+***คำอธิบาย คือ กำหนดให้ตัวแปร cnt มีค่าเริ่มต้นที่ 0***
+
 void setup(void){
+
 	Serial.begin(115200);
 
 	WiFi.mode(WIFI_STA);
+	
 	WiFi.begin(ssid, password);
+	
 	while (WiFi.status() != WL_CONNECTED) {
+	
 		delay(500);
+		
 		Serial.print(".");
+		
 	}
+	
 	Serial.print("\n\nIP address: ");
+	
 	Serial.println(WiFi.localIP());
 
 	server.onNotFound([]() {
+	
 		server.send(404, "text/plain", "Path Not Found");
+		
 	});
 
 	/// http://192.0.0.1/ = Hello cnt: ???
+	
 	server.on("/", []() {
+	
 		cnt++;
+		
 		String msg = "Hello cnt: ";
+		
 		msg += cnt;
+		
 		server.send(200, "text/plain", msg);
+		
 	});
+	
 	/// http://192.0.0.1/on = Hello cnt: ???
+	
 	server.on("/on", []() {
+	
 		cnt++;
+		
 		String msg = "Switch on ";
+		
 		msg += cnt;
+		
 		server.send(200, "text/plain", msg);
+		
 	});
+	
 	/// http://192.0.0.1/off = Switch off: ???
+	
 	server.on("/off", []() {
+	
 		cnt++;
+		
 		String msg = "Hello cnt: ";
+		
 		msg += cnt;
+		
 		server.send(200, "text/plain", msg);
+		
 	});
 
 	server.begin();
+	
 	Serial.println("HTTP server started");
+	
+}
+
+***คำอธิบายคือ เป็นการเซ็ท web browser ขึ้นมา แล้วเมื่อได้ IP Address มา เมื่อเราก็อปแล้วไปวางใน browser ก็จะปรากฎคำว่า Hello cnt ที่เรากำนหดไว้ ***
+
+void loop(void){
+
+  server.handleClient();
+  
+}
+
+# การทดลองที่ 5 เรื่อง การเขียนโปรแกรมสร้างไวไฟแอคเซสพ้อยท์
+
+include <ESP8266WiFi.h>
+
+include <WiFiClient.h>
+
+include <ESP8266WebServer.h>
+
+const char* ssid = "MY-ESP8266";
+
+const char* password = "choompol";
+
+IPAddress local_ip(192, 168, 1, 1);
+
+IPAddress gateway(192, 168, 1, 1);
+
+IPAddress subnet(255, 255, 255, 0);
+
+ESP8266WebServer server(80);
+
+***คำอธิบาย คือ เป็นการกำหนดชื่อไวไฟ,พาสเวิร์ด,local_ip,gateway,subnet และเปิดเซิร์ฟเวอร์ที่port 80***
+
+int cnt = 0;
+
+***คำอธิบาย คือ กำหนดให้ตัวแปร cnt มีค่าเริ่มต้นที่ 0***
+
+void setup(void){
+
+	Serial.begin(115200);
+
+	WiFi.softAP(ssid, password);
+	
+	WiFi.softAPConfig(local_ip, gateway, subnet);
+	
+	delay(100);
+
+	server.onNotFound([]() {
+	
+		server.send(404, "text/plain", "Path Not Found");
+		
+	});
+
+	server.on("/", []() {
+	
+		cnt++;
+		
+		String msg = "Hello cnt: ";
+		
+		msg += cnt;
+		
+		server.send(200, "text/plain", msg);
+		
+	});
+
+	server.begin();
+	
+	Serial.println("HTTP server started");
+	
 }
 
 void loop(void){
+
   server.handleClient();
+  
 }
+
+***คำอธิบาย คือ เป็นการเตรียมเว็บWeb server และกำหนด Access point จาก WiFi.softAP(ssid, password)***
