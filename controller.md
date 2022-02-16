@@ -6,7 +6,7 @@
 - ความเร็ว : 1GHz
 - Port I/O : 1 x USB A 2.0 Host, 1 x miniUSB 2.0 Client
 
-## 2.SIPEED MAIXDUINO FOR RISC-V AI +
+## 2.SIPEED MAIXDUINO FOR RISC-V AI + iot
 - ราคา : ฿1,045.58
 - Link : https://www.digikey.co.th/en/products/detail/seeed-technology-co-ltd/102991184/10263931
 - หน่วยความจำ : ใช้ Micro sd card
@@ -34,6 +34,8 @@
 - หน่วยความจำ : 8B flash, 512B SPRAM, 512B EEPROM
 - ความเร็ว : 1MHz
 - Port I/O : 1 x USB(อัพโหลดโปรแกรม), 1 x miniUSB(ชาร์จไฟ)
+
+
 
 
 
